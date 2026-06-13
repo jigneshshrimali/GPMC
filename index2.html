@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPMC Act Study Guide - AMC FSO Examination</title>
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #0d9488;
+            --accent-color: #e11d48;
+            --bg-light: #f8fafc;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Navigation Bar & Menu */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #93c5fd;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            border-radius: 2px;
+        }
+
+        /* Hero & Search Controls */
+        .hero {
+            background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+
+        .hero h1 {
+            font-size: 2.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero p {
+            color: #93c5fd;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 2rem auto;
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            padding: 0 1rem;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            box-shadow: var(--card-shadow);
+            outline: none;
+        }
+
+        /* Main Content Grid */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        /* Alert and Highlight styling */
+        .alert-box {
+            background-color: #fff1f2;
+            border-left: 4px solid var(--accent-color);
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+        }
+
+        .alert-title {
+            color: #9f1239;
+            font-weight: bold;
+            margin-bottom: 0.25rem;
+        }
+
+        /* Section Cards */
+        .zone-title {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+            margin: 2.5rem 0 1.5rem 0;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .section-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--card-shadow);
+            border-top: 4px solid var(--primary-color);
+            transition: transform 0.2s;
+        }
+
+        .section-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+            gap: 0.5rem;
+        }
+
+        .section-num {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .memory-tag {
+            background-color: #ccfbf1;
+            color: #115e59;
+            padding: 0.25rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* Visual Timeline Flow Component Styles */
+        .timeline-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            border: 1px solid #e2e8f0;
+        }
+        
+        .timeline-phase {
+            margin-bottom: 1.75rem;
+            padding-bottom: 1.25rem;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+        
+        .timeline-phase:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .phase-title {
+            color: #0f172a;
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.75px;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .flow-badges-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .flow-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-size: 0.88rem;
+            font-weight: 500;
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+        
+        .flow-badge:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .badge-p1 { background: #e0f2fe; color: #0369a1; }
+        .badge-p1 b { color: #0284c7; font-weight: 700; }
+        
+        .badge-p2 { background: #fef9c3; color: #713f12; }
+        .badge-p2 b { color: #a16207; font-weight: 700; }
+        
+        .badge-p3 { background: #dcfce7; color: #14532d; }
+        .badge-p3 b { color: #15803d; font-weight: 700; }
+        
+        .badge-p4 { background: #ffe4e6; color: #881337; }
+        .badge-p4 b { color: #be123c; font-weight: 700; }
+
+        .details-box {
+            margin-top: 0.75rem;
+        }
+
+        .details-box strong {
+            color: #334155;
+        }
+
+        .fso-hook {
+            background-color: #fef9c3;
+            border-left: 4px solid #ca8a04;
+            padding: 0.75rem;
+            margin-top: 1rem;
+            border-radius: 0 4px 4px 0;
+            font-size: 0.95rem;
+        }
+
+        /* Interactive Master Reference Table */
+        .table-container {
+            overflow-x: auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: var(--card-shadow);
+            margin-top: 2rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        tr:hover {
+            background-color: #f1f5f9;
+        }
+
+        .no-results {
+            display: none;
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: var(--card-shadow);
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-color);
+                padding: 1rem 2rem;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                gap: 1rem;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+
+            thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+
+            tr {
+                border: 1px solid #e2e8f0;
+                margin-bottom: 1rem;
+                border-radius: 6px;
+                background: white;
+                padding: 0.5rem;
+            }
+
+            td {
+                border: none;
+                border-bottom: 1px solid #f1f5f9;
+                position: relative;
+                padding-left: 50%;
+                text-align: right;
+            }
+
+            td:last-child {
+                border-bottom: none;
+            }
+
+            td:before {
+                position: absolute;
+                left: 10px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                text-align: left;
+                font-weight: bold;
+                color: var(--primary-color);
+            }
+
+            td:nth-of-type(1):before { content: "Section"; }
+            td:nth-of-type(2):before { content: "Legal Focus"; }
+            td:nth-of-type(3):before { content: "Keyword"; }
+            td:nth-of-type(4):before { content: "FSO Connection"; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="nav-container">
+            <div class="logo">GPMC ACT MASTERPIECE</div>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="GPMC_1949.pdf">Main PDF</a></li>
+                <li><a href="index.html">GPMC ALL</a></li>
+                <li><a href="#story-flow">1-Min Flow</a></li>
+                <li><a href="#admin-machinery">Zone 1-4</a></li>
+                <li><a href="#core-mandates">Zone 5-7</a></li>
+                <li><a href="#enforcement-fields">Zone 8-10</a></li>
+                <li><a href="#reference-sheet">Reference Table</a></li>
+                <li><a href="#exam-tips">Exam Tips</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>The Ultimate GPMC Act Guide</h1>
+            <p>Tailor-Made Comprehensive Revision Framework for the AMC Food Safety Officer (FSO) Examination</p>
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-bar" placeholder="Search sections, rules, keywords, memory palaces...">
+            </div>
+        </section>
+
+        <div class="container">
+
+            <section id="story-flow" class="searchable-content">
+                <h2 class="zone-title">The Mental Movie Story (1-Minute Chronological Flow)</h2>
+                <div class="timeline-card">
+                    
+                    <div class="timeline-phase">
+                        <div class="phase-title">📂 Phase 1: Foundation &amp; Command Setup</div>
+                        <div class="flow-badges-container">
+                            <span class="flow-badge badge-p1">🐣 Legal Entity Born <b>(Sec. 5)</b></span>
+                            <span class="flow-badge badge-p1">🚫 Disqualifications Set <b>(Sec. 10)</b></span>
+                            <span class="flow-badge badge-p1">👑 Political Mayor takes Chair <b>(Sec. 19)</b></span>
+                            <span class="flow-badge badge-p1">💼 Standing Committee manages funds <b>(Sec. 20)</b></span>
+                            <span class="flow-badge badge-p1">👔 Executive Commissioner Appointed <b>(Sec. 36)</b></span>
+                            <span class="flow-badge badge-p1">🩺 Health Officers Appointed <b>(Sec. 45/46)</b></span>
+                        </div>
+                    </div>
+
+                    <div class="timeline-phase">
+                        <div class="phase-title">🏦 Phase 2: Administrative Machinery &amp; Treasury</div>
+                        <div class="flow-badges-container">
+                            <span class="flow-badge badge-p2">🔒 Essential Staff restrictions <b>(Sec. 61)</b></span>
+                            <span class="flow-badge badge-p2">📜 Mandatory Duties executed <b>(Sec. 63)</b></span>
+                            <span class="flow-badge badge-p2">⚡ Executive Wing Vested Powers <b>(Sec. 67/68)</b></span>
+                            <span class="flow-badge badge-p2">🏗️ Property acquired for infrastructure <b>(Sec. 76)</b></span>
+                            <span class="flow-badge badge-p2">💰 Revenues to Municipal Fund <b>(Sec. 82)</b></span>
+                            <span class="flow-badge badge-p2">🚨 Urgent emergency spending released <b>(Sec. 90/134)</b></span>
+                            <span class="flow-badge badge-p2">📊 Accounts tracked via Standing Rules <b>(Sec. 93)</b></span>
+                            <span class="flow-badge badge-p2">💸 Core taxes imposed for revenue <b>(Sec. 127)</b></span>
+                        </div>
+                    </div>
+
+                    <div class="timeline-phase">
+                        <div class="phase-title">🚰 Phase 3: Civil Infrastructure &amp; Outbreak Controls</div>
+                        <div class="flow-badges-container">
+                            <span class="flow-badge badge-p3">🧬 Sewage &amp; Water lines engineered <b>(Sec. 153/189)</b></span>
+                            <span class="flow-badge badge-p3">💥 Outbreak protocols triggered <b>(Sec. 315)</b></span>
+                            <span class="flow-badge badge-p3">🏚️ Infectious Eating Houses closed <b>(Sec. 318)</b></span>
+                            <span class="flow-badge badge-p3">🥩 Markets classified <b>(Sec. 327)</b></span>
+                        </div>
+                    </div>
+
+                    <div class="timeline-phase">
+                        <div class="phase-title">🔍 Phase 4: Active Food Supervision &amp; Enforcement</div>
+                        <div class="flow-badges-container">
+                            <span class="flow-badge badge-p4">🤢 Unwholesome food banned <b>(Sec. 337)</b></span>
+                            <span class="flow-badge badge-p4">🧪 Vessels &amp; Utensils searched <b>(Sec. 338)</b></span>
+                            <span class="flow-badge badge-p4">🐄 Veterinary screenings performed <b>(Sec. 340)</b></span>
+                            <span class="flow-badge badge-p4">🪪 Trade operations Licensing <b>(Sec. 376)</b></span>
+                            <span class="flow-badge badge-p4">🛑 Illegal setups shutdown (Police force) <b>(Sec. 376A)</b></span>
+                            <span class="flow-badge badge-p4">🛒 Street food carts inspected <b>(Sec. 381/383)</b></span>
+                            <span class="flow-badge badge-p4">⚖️ Court Prosecutions &amp; Daily Fines <b>(Sec. 481/472)</b></span>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <section id="admin-machinery">
+                <h2 class="zone-title">Zone 1 & 2: Administrative Machinery & Leadership</h2>
+
+                <div class="section-card searchable-content">
+                    <div class="card-header">
+                        <span class="section-num">Section 4: Municipal Authorities Charged with Execution</span>
+                        <span class="memory-tag">4 = The Four Pillars of Command</span>
+                    </div>
+                    <p><strong>Smart Memory:</strong> A giant digital billboard at the lobby entrance listing the supreme administrative pillars of the city.</p>
+                    <div class="details-box">
+                        <p><strong>Exam Details:</strong> Explicitly charges four authorities with executing this Act: (a) The Corporation, (b) The Standing Committee, (c) The Municipal Commissioner, and (where applicable) (d) The Transport Committee.</p>
+                    </div>
+                    <div class="fso-hook">
+                        <strong>Question Hook:</strong> Paper setters love to ask which body is not charged with execution under Section 4. The Mayor is not an executing authority; the Mayor is a political/presiding head.
+                    </div>
+                </div>
+
+                <div class="section-card searchable-content">
+                    <div class="card-header">
+                        <span class="section-num">Section 5: Constitution of Corporation</span>
+                        <span class="memory-tag">5 = Birth Certificate of the Corporation</span>
+                    </div>
+                    <p><strong>Smart Memory:</strong> A baby being born inside the main assembly hall and instantly handed an official corporation seal.</p>
+                    <div class="details-box">
+                        <p><strong>Exam Details:</strong> Officially defines the Corporation as a Body Corporate. Statutory keywords include Perpetual Succession, Common Seal, power to hold property, and the capacity to sue and be sued under its corporate title.</p>
+                    </div>
+                </div>
+
+                <div class="section-card searchable-content">
+                    <div class="card-header">
+                        <span class="section-num">Section 6: Duration of Corporation</span>
+                        <span class="memory-tag">6 = The 5-Year Lifespan Clock</span>
+                    </div>
+                    <p><strong>Smart Memory:</strong> A clock on the wall ticking down exactly 60 months (5 years).</p>
+                    <div class="details-box">
+                        <p><strong>Exam Details:</strong> Sets the definitive term of the Corporation at 5 years from the date appointed for its first meeting, unless dissolved earlier.</p>
+                    </div>
+                </div>
+
+                <div class="section-card searchable-content">
+                    <div class="card-header">
+                        <span class="section-num">Section 7: Resignation of Office by Councillors</span>
+                        <span class="memory-tag">7 = Stepping Down</span>
+                    </div>
+                    <p><strong>Smart Memory:</strong> An elected member walking out of the building throwing down a resignation letter.</p>
+                    <div class="details-box">
+                        <p><strong>Exam Details:</strong> Governs the process by which elected representatives resign. A Councillor submits a signed written resignation directly to the Mayor.</p>
+                    </div>
+                    <div class="alert-box">
+                        <div class="alert-title">! Syllabus Trap</div>
+                        <p>Students mistake Section 7 for composition. Composition parameters (Wards and Elections) span from Sections 5 to 18 under the sub-headings Qualifications and Disqualifications and Election of Councillors. Wards are the units from which Corporators are elected.</p>
+                    </div>
+                </div>
+
+                <div class="section-card searchable-content">
+                    <div class="card-header">
+                        <span class="section-num">Section 10: Disqualification for being a Councillor</span>
+                        <span class="memory-tag">10 = Show Me the Exit / Disqualification Card</span>
+                    </div>
+                    <p><strong>Smart Memory:</strong> A candidate being kicked out of the building for hiding an illegal corporate contract.</p>
+                    <div class="details-box">
+                        <p><strong>Exam Details:</strong> Lists the strict bars on holding a seat. High-yield criteria include: Holding an office of profit under the Corporation, failing to pay municipal dues within a specified timeline after receiving an official notice, being an undischarged insolvent, or having a direct/indirect financial interest in any corporate contract or employment.</p>
+                    </div>
+                </div>
+
+                <div class="section-card searchable-content">
+                    <div class="card-header">
+                        <span class="section-num">Section 19: Mayor and Deputy Mayor</span>
+                        <span class="memory-tag">19 = Mayor on the Throne</span>
+                    </div>
+                    <p><strong>Smart Memory:</strong> Gate No. 19 leads to a grand throne room where the First Citizen (the Mayor) welcomes the public.</p>
+                    <div class="details-box">
+                        <p><strong>Exam Details:</strong> Commands the Corporation to choose a Mayor and a Deputy Mayor from among its elected Councillors. The Mayor acts as the constitutional head and presides over General Body meetings.</p>
+                    </div>
+                    <div class="alert-box">
+                        <div class="alert-title">! The Exam Trap</div>
+                        <p>The Mayor holds deliberative and political supremacy, not executive authority. Do not confuse political oversight with executive command.</p>
+                    </div>
+                </div>
+
+                <div class="section-card searchable-content">
+                    <div class="card-header">
+                        <span class="section-num">Section 20: Constitution of Standing Committee</span>
+                        <span class="memory-tag">20 = Money Guardians</span>
+                    </div>
+                    <p><strong>Smart Memory:</strong> A high-security bank vault door guarded by 20 strict financial accountants checking budget spreadsheets.</p>
+                    <div class="details-box">
+                        <p><strong>Exam Details:</strong> This is the most powerful internal committee within the Corporation's infrastructure. It acts as the financial screening engine, exercising structural control over corporate expenses, scrutinizing budget applications, and auditing corporate tenders before general board evaluation.</p>
+                    </div>
+                </div>
+
+                <div class="section-card searchable-content">
+                    <div class="card-header">
+                        <span class="section-num">Section 25: Appointment of Transport Committee</span>
+                        <span class="memory-tag">25 = The Transport Desk</span>
+                    </div>
+                    <p><strong>Smart Memory:</strong> A miniature model of a city bus numbered 25 sitting on a committee table.</p>
+                    <div class="details-box">
+                        <p><strong>Exam Details:</strong> Regulates the composition of the committee tasked with managing, structuring, and scaling the public transport undertaking across the city.</p>
+                    </div>
+                </div>
+
+                <div class="section-card searchable-content">
+                    <div class="card-header">
+                        <span class="section-num">Section 35: Proceedings Valid Until Contrary Proved</span>
+                        <span class="memory-tag">35 = Shield of Legitimacy</span>
+                    </div>
+                    <p><strong>Smart Memory:</strong> A judge slamming a gavel marked 35 to protect municipal files from a minor technical typo lawsuit.</p>
+                    <div class="details-box">
+                        <p><strong>Exam Details:</strong> Protects the legitimacy of municipal governance. It states that even if an error, vacancy, or later disqualification of a member is discovered, all decisions and transactions made during meetings remain perfectly valid unless clear proof of bad faith or systemic invalidity is established in court.</p>
+                    </div>
+                </div>
+
+                <h2 class="zone-title">Zone 3 & 4: Executive Staff & Essential Services</h2>
+
+                <div class="section-card searchable-content">
+                    <div class="card-header">
+                        <span class="section-num">Section 36: Appointment of the Commissioner</span>
+                        <span class="memory-tag">36 = CEO's Office</span>
+                    </div>
+                    <p><strong>Smart Memory:</strong> Room No. 36 has a huge gold plaque reading: "CHIEF EXECUTIVE OFFICER (CEO)".</p>
+                    <div class="details-box">
+                        <p><strong>Exam Details:</strong> The absolute administrative spine of the Act. The Municipal Commissioner is appointed by the State Government and exercises supreme executive power over daily operations. Remember that Section 36 defines who the executive head is, while Section 63 defines what the corporation provides for.</p>
+                    </div>
+                </div>
+
+                <div class="section-card searchable-content">
+                    <div class="card-header">
+                        <span class="section-num">Sections 45 & 46: Statutory Officers & Duties</span>
+                        <span class="memory-tag">45/46 = The City Brains</span>
+                    </div>
+                    <p><strong>Smart Memory:</strong> An engineer holding blueprints at desk 45 handing them to a Medical Officer with a stethoscope at desk 46.</p>
+                    <div class="details-box">
+                        <p><strong>Sec. 45:</strong> Governs the appointment of essential statutory posts: City Engineer, Medical Officer of Health (MOH), Municipal Chief Auditor, and Municipal Secretary.</p>
+                        <p><strong>Sec. 46:</strong> Defines the powers and duties of the City Engineer and the MOH.</p>
+                        <p><strong>Food Safety Context:</strong> The MOH is the primary authority coordinating local health, disease vectors, and contamination sanitation containment.</p>
+                    </div>
+                </div>
+
+                <div class="section-card searchable-content">
+                    <div class="card-header">
+                        <span class="section-num">Section 47: Powers and Duties of Municipal Chief Auditor</span>
+                        <span class="memory-tag">47 = The Account Scanner</span>
+                    </div>
+                    <p><strong>Smart Memory:</strong> An auditor at desk 47 wielding a giant red pen to double-check municipal ledger sheets.</p>
+                    <div class="details-box">
+                        <p><strong>Exam Details:</strong> Empowers the Chief Auditor to run independent, continuous audits of corporate expenditure. The Auditor reports directly to the Standing Committee to prevent financial anomalies.</p>
+                    </div>
+                </div>
+
+                <div class="section-card searchable-content">
+                    <div class="card-header">
+                        <span class="section-num">Section 61: Essential Services Restrictions</span>
+                        <span class="memory-tag">61 = Essential Services No-Exit Rule</span>
+                    </div>
+                    <p><strong>Smart Memory:</strong> Emergency workers locked to their desks by chain 61 during a massive city storm.</p>
+                    <div class="details-box">
+                        <p><strong>Exam Details:</strong> Blocks municipal emergency staff from abandoning their duties. Employees classified under essential operations (such as conservancy, public health, fire response, and waterworks engineers) cannot resign or stop work without written authorization, ensuring city services do not collapse.</p>
+                    </div>
+                </div>
+
+                <div class="section-card searchable-content">
+                    <div class="card-header">
+                        <span class="section-num">Section 62: State Power to Declare Emergency</span>
+                        <span class="memory-tag">62 = The State Emergency Button</span>
+                    </div>
+                    <p><strong>Smart Memory:</strong> The Governor activating an emergency siren shaped like a 62 to override a city strike.</p>
+                    <div class="details-box">
+                        <p><strong>Exam Details:</strong> Gives the State Government authority to step in. If public health, safety, or basic infrastructure is threatened by strikes or major disruptions, the State can issue an emergency declaration to secure, restore, or take control of municipal operations.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="core-mandates">
+                <h2 class="zone-title">Zone 5, 6 & 7: Core Mandates, Assets & Treasury</h2>
+
+                <div class="section-card searchable-content" style="border-top-color: var(--accent-color);">
+                    <div class="card-header">
+                        <span class="section-num">Section 63: Obligatory Duties of the Corporation (★ Super Critical)</span>
+                        <span class="memory-tag">63 = The Non-Negotiable Checklist</span>
+                    </div>
+                    <p><strong>Smart Memory:</strong> A massive legal document containing 63 checkboxes that the Corporation must tick off every day to keep the city alive.</p>
+                    <div class="details-box">
+                        <p><strong>Exam Details:</strong> The single most tested section for municipal functions. It lists the items the Corporation must fulfill using its resources:</p>
+                        <ul style="margin-left: 1.5rem; margin-top: 0.5rem; display: grid; gap: 0.3rem;">
+                            <li><strong>Clause (2):</strong> Scavenging, street watering, and cleansing of public walkways.</li>
+                            <li><strong>Clause (3):</strong> The collection, removal, treatment, and safe disposal of sewage, offensive waste, and Solid Waste Management.</li>
+                            <li><strong>Clause (4):</strong> Building, maintaining, and clearing public drains, water-closets, and urinals.</li>
+                            <li><strong>Clause (6):</strong> Constructing and running public hospitals, including specialized facilities for isolating contagious diseases.</li>
+                            <li><strong>Clause (11):</strong> Securing or dismantling dangerous structures.</li>
+                            <li><strong>Clause (12):</strong> Registering births and deaths.</li>
+                            <li><strong>Clause (17):</strong> Establishing and regulating public markets and slaughterhouses.</li>
+                            <li><strong>Clause (20):</strong> Managing municipal waterworks to secure a constant supply of safe, wholesome drinking water.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section-card searchable-content">
+                    <div class="card-header">
+                        <span class="section-num">Section 66: Discretionary Duties</span>
+                        <span class="memory-tag">66 = The Optional/Discretionary Checklist</span>
+                    </div>
+                    <p><strong>Smart Memory:</strong> A luxury lounge numbered 66 featuring designs for public parks, museums, and transport options.</p>
+                    <div class="details-box">
+                        <p><strong>Exam Details:</strong> Covers matters the Corporation may choose to fund if the budget permits (e.g., establishing public gardens, building public theaters, setting up relief stalls during scarcity, or organizing educational exhibitions).</p>
+                    </div>
+                </div>
+
+                <div class="section-card searchable-content">
+                    <div class="card-header">
+                        <span class="section-num">Section 67: Executive Functions of Authorities</span>
+                        <span class="memory-tag">67 = Executive Vested Power</span>
+                    </div>
+                    <p><strong>Smart Memory:</strong> The Commissioner standing in hall 67 pointing to an emblem reading "Supreme Executive Execution Power".</p>
+                    <div class="details-box">
+                        <p><strong>Exam Details:</strong> Explicitly maps out where executive authority rests. It clearly states that the overall executive power for carrying out the provisions of this Act vests directly in the Municipal Commissioner, subject to approval limits set by the Corporation or Standing Committee.</p>
+                    </div>
+                </div>
+
+                <div class="section-card searchable-content">
+                    <div class="card-header">
+                        <span class="section-num">Section 68: Power Under Other External Laws</span>
+                        <span class="memory-tag">68 = The External Enforcement Link</span>
+                    </div>
+                    <p><strong>Smart Memory:</strong> The Commissioner wielding an extra set of keys labeled 68 to unlock national health laws.</p>
+                    <div class="details-box">
+                        <p><strong>Exam Details:</strong> Broadens the enforcement reach of the executive head. It allows the Municipal Commissioner to seamlessly exercise powers and enforcement mechanisms granted under separate state or central acts (such as national food safety protocols, environmental protection acts, or public health declarations) using the corporate machinery.</p>
+                    </div>
+                </div>
+
+                <div class="section-card searchable-content">
+                    <div class="card-header">
+                        <span class="section-num">Section 76: Acquisition of Property</span>
+                        <span class="memory-tag">76 = Property Acquisition</span>
+                    </div>
+                    <p><strong>Smart Memory:</strong> A legal deed stamped 76 allowing AMC to buy land for a public food testing laboratory.</p>
+                    <div class="details-box">
+                        <p><strong>Exam Details:</strong> Empowers the Corporation to buy, receive, lease, or hold property. Gives the municipality the legal power to acquire both movable and immovable assets inside or outside city borders for the purposes of the Act (such as building public testing labs, cold storage sites, or new municipal markets).</p>
+                    </div>
+                </div>
+
+                <div class="section-card searchable-content">
+                    <div class="card-header">
+                        <span class="section-num">Section 79: Disposal of Municipal Property</span>
+                        <span class="memory-tag">79 = Property Disposal Lock</span>
+                    </div>
+                    <p><strong>Smart Memory:</strong> A barrier gate labeled 79 stopping the unapproved sale of municipal market land.</p>
+                    <div class="details-box">
+                        <p><strong>Exam Details:</strong> Restricts how city land and assets can be sold, leased, or transferred. The Commissioner cannot sell or lease municipal property for long periods without the formal sanction and approval of the Standing Committee or the Corporation.</p>
+                    </div>
+                </div>
+
+                <div class="section-card searchable-content">
+                    <div class="card-header">
+                        <span class="section-num">Section 82: Constitution of Municipal Fund</span>
+                        <span class="memory-tag">82 = The Master Money Vault</span>
+                    </div>
+                    <p><strong>Smart Memory:</strong> A giant titanium cash locker labeled 82 where every stream of public tax revenue accumulates.</p>
+                    <div class="details-box">
+                        <p><strong>Exam Details:</strong> Formally sets up the central treasury account. All money received by or on behalf of the Corporation—including civic taxes, registration fees, licensing fines, and state grants—is pooled into a single account known as the Municipal Fund.</p>
+                    </div>
+                </div>
+
+                <div class="section-card searchable-content">
+                    <div class="card-header">
+                        <span class="section-num">Section 83: Lodgment of Money Collections</span>
+                        <span class="memory-tag">83 = Money Lodgment Duty</span>
+                    </div>
+                    <p><strong>Smart Memory:</strong> The Commissioner hauling bags of revenue straight to a bank teller window numbered 83.</p>
+                    <div class="details-box">
+                        <p><strong>Exam Details:</strong> Designates the legal handler of all incoming corporate revenues. The Commissioner is personally responsible for receiving all incoming city moneys and must promptly lodge them into approved banks.</p>
+                    </div>
+                </div>
+
+                <div class="section-card searchable-content">
+                    <div class="card-header">
+                        <span class="section-num">Section 88: Lawful Spending Limits</span>
+                        <span class="memory-tag">88 = Lawful Spending Bounds</span>
+                    </div>
+                    <p><strong>Smart Memory:</strong> A strict rules booklet marked 88 defining exactly what the city cash can be legally spent on.</p>
+                    <div class="details-box">
+                        <p><strong>Exam Details:</strong> Defines the lawful spending limits of city funds. Money within the Municipal Fund can only be spent on tasks expressly authorized by the GPMC Act or other laws governing municipal operations.</p>
+                    </div>
+                </div>
+
+                <div class="section-card searchable-content">
+                    <div class="card-header">
+                        <span class="section-num">Section 90: Urgent Emergency Spending Payments</span>
+                        <span class="memory-tag">90 = Emergency Spending Escape Valve</span>
+                    </div>
+                    <p><strong>Smart Memory:</strong> An emergency axe breaking glass box 90 to pull out urgent cash to patch a broken water main.</p>
+                    <div class="details-box">
+                        <p><strong>Exam Details:</strong> Provides a way to bypass standard budget rules during unexpected public emergencies. If a sudden disaster or public crisis threatens city health or infrastructure (such as an outbreak or a contaminated water system), the Commissioner can authorize immediate spending for urgent works, even if the funds aren't covered by a current budget grant. It requires prompt notification to the Standing Committee.</p>
+                    </div>
+                </div>
+
+                <div class="section-card searchable-content">
+                    <div class="card-header">
+                        <span class="section-num">Section 93: Accounting Prescriptions</span>
+                        <span class="memory-tag">93 = Standing Committee Ledger Rules</span>
+                    </div>
+                    <p><strong>Smart Memory:</strong> A strict double-entry ledger book marked 93 detailing corporate tracking codes.</p>
+                    <div class="details-box">
+                        <p><strong>Exam Details:</strong> Mandates accounting standards. The layout, ledgers, and tracking format of municipal accounts must be maintained according to the specific formatting rules set by the Standing Committee.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="enforcement-fields">
+                <h2 class="zone-title">Zone 8, 9 & 10: Special Billing, Engineering & FSO Core Weapons</h2>
+
+                <div class="section-card searchable-content">
+                    <div class="card-header">
+                        <span class="section-num">Section 127: Taxes Imposed under this Act</span>
+                        <span class="memory-tag">127 = The Tax Catalog</span>
+                    </div>
+                    <p><strong>Smart Memory:</strong> A high-speed sorting machine filing invoices into 127 different tax categories.</p>
+                    <div class="details-box">
+                        <p><strong>Exam Details:</strong> Lists the revenue engines that fund the city's public health works. Core taxes include: (1) Property Taxes (comprising general tax, water tax, conservancy tax, and drainage tax), (2) Tax on Vehicles, Boats, and Animals, (3) Theatre Tax, and (4) Mobile Tower Taxes.</p>
+                    </div>
+                </div>
+
+                <div class="section-card searchable-content">
+                    <div class="card-header">
+                        <span class="section-num">Section 128: Manner of Recovering Taxes</span>
+                        <span class="memory-tag">128 = Tax Recovery Methods</span>
+                    </div>
+                    <p><strong>Smart Memory:</strong> A collection officer issuing a strict property attachment warrant marked 128.</p>
+                    <div class="details-box">
+                        <p><strong>Exam Details:</strong> Sets out the legal steps for collecting unpaid taxes. Enforcement actions include serving an official bill, issuing a demand notice, attaching movable or immovable property, or initiating legal recovery lawsuits.</p>
+                    </div>
+                </div>
+
+                <div class="section-card searchable-content" style="border-top-color: var(--secondary-color);">
+                    <div class="card-header">
+                        <span class="section-num">Section 134: Water Supply Charges by Measurement / Compounding</span>
+                        <span class="memory-tag">134 = Volume Billing / Industry Water Meter</span>
+                    </div>
+                    <p><strong>Smart Memory:</strong> A high-tech digital water meter calculating consumption for a large sweetmeat factory, marked with a 134 stamp.</p>
+                    <div class="details-box">
+                        <p><strong>Context & Details:</strong> High-volume operations like food processing plants, commercial kitchens, sweetmeat factories, and slaughterhouses consume water at a level that doesn't align with basic property values. Section 134 provides the alternative system:</p>
+                        <p style="margin-top:0.5rem;">1. <strong>Clause (a) - Charging by Measurement:</strong> The Commissioner can charge for water by a meter or measurement at specific rates set by the Standing Committee.</p>
+                        <p>2. <strong>Clause (b) - Compounding:</strong> The Commissioner can sign an agreement with a business owner for a renewable term of 1 to 5 years, charging a fixed periodical sum instead of strict meter readings.</p>
+                    </div>
+                    <div class="fso-hook">
+                        <strong>FSO Exam Hook:</strong> Watch out for questions on the maximum duration allowed when compounding for a water supply under Section 134. It cannot exceed 5 years at one time.
+                    </div>
+                </div>
+
+                <div class="section-card searchable-content">
+                    <div class="card-header">
+                        <span class="section-num">Section 153: Construction of Drains</span>
+                        <span class="memory-tag">153 = The Sewage Highway</span>
+                    </div>
+                    <p><strong>Smart Memory:</strong> A deep underground drainage pipeline layout stretching for 153 kilometers.</p>
+                    <div class="details-box">
+                        <p><strong>Exam Details:</strong> Gives the executive branch full authority over the city's sewage network. Poor drainage leads directly to water contamination and pest vectors. Section 153 gives the Commissioner power to lay out, construct, expand, or fix sewers across public or private land.</p>
+                    </div>
+                </div>
+
+                <div class="section-card searchable-content">
+                    <div class="card-header">
+                        <span class="section-num">Section 189: Provision of Corporate Water Supply</span>
+                        <span class="memory-tag">189 = Potable Water Delivery Protection</span>
+                    </div>
+                    <p><strong>Smart Memory:</strong> A giant clean water reservoir numbered 189 supplying drinking water across the city map.</p>
+                    <div class="details-box">
+                        <p><strong>Exam Details:</strong> Mandates the engineering and protection of municipal water networks to ensure a reliable supply of safe, pure drinking water.</p>
+                    </div>
+                </div>
+
+                <div class="section-card searchable-content">
+                    <div class="card-header">
+                        <span class="section-num">Section 194: Vesting of Water Works</span>
+                        <span class="memory-tag">194 = Source Water Ownership</span>
+                    </div>
+                    <p><strong>Smart Memory:</strong> An official copper shield mounted on a municipal pump station reading "Property of AMC - Code 194".</p>
+                    <div class="details-box">
+                        <p><strong>Exam Details:</strong> Establishes ownership of water infrastructure. It states that all public water reservoirs, mains, pumps, conduits, and engineering components vest entirely in the Corporation, creating the legal chain of custody for water safety before it reaches consumers.</p>
+                    </div>
+                </div>
+
+                <div class="section-card searchable-content">
+                    <div class="card-header">
+                        <span class="section-num">Section 199: Pushing Water Pipes through Private Land</span>
+                        <span class="memory-tag">199 = Pipeline Infrastructure Push</span>
+                    </div>
+                    <p><strong>Smart Memory:</strong> A drilling rig pushing a clean water pipe right underneath fence line 199.</p>
+                    <div class="details-box">
+                        <p><strong>Exam Details:</strong> Grants the Commissioner structural authority to lay water mains, pipes, or conduits through, under, or across any private land or street after giving a reasonable written notice. This ensures grid extensions to food processing zones or public markets cannot be blocked by private land disputes.</p>
+                    </div>
+                </div>
+
+                <div class="section-card searchable-content">
+                    <div class="card-header">
+                        <span class="section-num">Section 202: Vesting of Public Streets</span>
+                        <span class="memory-tag">202 = Public Highway Ownership</span>
+                    </div>
+                    <p><strong>Smart Memory:</strong> Standing on a wide road marked "Route 202" with an official sign reading: "Property of the Corporation."</p>
+                    <div class="details-box">
+                        <p><strong>Exam Details:</strong> Declares all public roads, pavements, sidewalks, and structural materials property of the Corporation, placing them under the direct control of the Commissioner.</p>
+                    </div>
+                </div>
+
+                <div class="section-card searchable-content">
+                    <div class="card-header">
+                        <span class="section-num">Section 210: Power to Prescribe Street Lines</span>
+                        <span class="memory-tag">210 = Road Boundaries</span>
+                    </div>
+                    <p><strong>Smart Memory:</strong> A yellow laser marking a perfect boundary line down boulevard 210.</p>
+                    <div class="details-box">
+                        <p><strong>Exam Details:</strong> Regulates road boundaries to prevent layout issues. Encroachments and immediate clearance of items hawked or deposited on public walkways without notice are governed further down under Section 231.</p>
+                    </div>
+                </div>
+
+                <div class="section-card searchable-content">
+                    <div class="card-header">
+                        <span class="section-num">Section 253 & 254: Notice to Erect Buildings</span>
+                        <span class="memory-tag">253 = Prior Building Plan Approval</span>
+                    </div>
+                    <p><strong>Smart Memory:</strong> A builder carrying blueprints marked 253 waiting in line for formal structural authorization.</p>
+                    <div class="details-box">
+                        <p><strong>Exam Details:</strong> Stops unauthorized construction. Anyone planning to build or structurally modify a property must first file a formal notice accompanied by certified architectural blueprints.</p>
+                    </div>
+                </div>
+
+                <div class="section-card searchable-content">
+                    <div class="card-header">
+                        <span class="section-num">Section 264: Unsafe or Dangerous Buildings</span>
+                        <span class="memory-tag">264 = Dangerous Structure Demolition</span>
+                    </div>
+                    <p><strong>Smart Memory:</strong> A building shaking structurally with a big red warning sign painted across it: "DEMOLISH OR REPAIR - ORDER 264".</p>
+                    <div class="details-box">
+                        <p><strong>Exam Details:</strong> Public safety protection power. If an ongoing inspection shows a building is structurally unstable, dilapidated, or dangerous to human life, the Commissioner can order the owner to secure, vacate, or demolish it.</p>
+                    </div>
+                </div>
+
+                <div class="section-card searchable-content">
+                    <div class="card-header">
+                        <span class="section-num">Section 290 & 291: Scavenging and Waste Ownership</span>
+                        <span class="memory-tag">290/291 = Waste Management Rules</span>
+                    </div>
+                    <p><strong>Sec. 290 (The Clean Street Sweep):</strong> Mandates regular street cleaning and waste management. The Commissioner must ensure public streets are swept and all urban refuse and filth is systematically removed.</p>
+                    <p style="margin-top:0.5rem;"><strong>Sec. 291 (Waste Ownership Law):</strong> All collected municipal waste, sweepings, sewage, and commercial garbage legally belong to the Corporation, allowing for centralized disposal or recycling processing.</p>
+                </div>
+
+                <div class="section-card searchable-content">
+                    <div class="card-header">
+                        <span class="section-num">Section 296 & 297: Sanitary Entries & Whitewashing Orders</span>
+                        <span class="memory-tag">296/297 = Sanitary Clean Check</span>
+                    </div>
+                    <p><strong>Sec. 296 (Sanitary Entry Power):</strong> Gives the executive wing authority to enter and inspect properties to verify sanitary compliance and identify health hazards.</p>
+                    <p style="margin-top:0.5rem;"><strong>Sec. 297 (Mandatory Whitewashing Order):</strong> If an industrial site or building is unhygienic, the Commissioner can issue a notice requiring the owner to whitewash, clean, or disinfect the premises.</p>
+                </div>
+
+                <div class="section-card searchable-content" style="border-top-color: var(--accent-color);">
+                    <div class="card-header">
+                        <span class="section-num">Section 315 & 318: Disease Containment & Closure of Eating Houses</span>
+                        <span class="memory-tag">315/318 = Outbreak Controls</span>
+                    </div>
+                    <p><strong>Sec. 315 (Unannounced Disease Containment Protocol):</strong> Emergency containment authority during infectious or waterborne outbreaks. Authorizes unannounced entries to disinfect or isolate vectors.</p>
+                    <p style="margin-top:0.5rem;"><strong>Sec. 318 (Shut Food Outlets):</strong> Empowers health officers to shut down eating places, food outlets, or water stations spreading infectious diseases.</p>
+                </div>
+
+                <div class="section-card searchable-content" style="border-top-color: var(--accent-color);">
+                    <div class="card-header">
+                        <span class="section-num">Section 337 & 338: Unwholesome Food & Search/Seizure Tools</span>
+                        <span class="memory-tag">337/338 = Core Enforcement Weapons</span>
+                    </div>
+                    <p><strong>Sec. 337 (Banning Decayed Food):</strong> An absolute must-know baseline for food inspectors. This section explicitly bans anyone from selling, keeping, or exposing for sale any unwholesome food, diseased meat, or adulterated ingredients within an official municipal market.</p>
+                    <p style="margin-top:0.5rem;"><strong>Sec. 338 (The FSO's Search & Seizure Tool):</strong> Grants the authority to inspect live animals, raw ingredients, and foods intended for human consumption. Crucially, it extends to the full inspection of vessels, pots, utensils, and manufacturing tools used in food preparation. Gives inspectors statutory authority to seize any item found to be unwholesome, adulterated, or diseased on the spot.</p>
+                </div>
+
+                <div class="section-card searchable-content">
+                    <div class="card-header">
+                        <span class="section-num">Section 376 & 376A: Trade Licensing & Instant Police Shutdowns</span>
+                        <span class="memory-tag">376/376A = Gatekeeper Protocols</span>
+                    </div>
+                    <p><strong>Sec. 376 (Gatekeeper License):</strong> Bars commercial kitchens, food manufacturers, and industrial trades from operating without a formal corporate health license.</p>
+                    <p style="margin-top:0.5rem;"><strong>Sec. 376A (Instant Closure / Police Force):</strong> If a trade is caught operating without a valid license, or is violating safety conditions to a degree that endangers public health, the Commissioner can take immediate steps to halt the use of the premises, including using police assistance to seal the doors.</p>
+                </div>
+
+                <div class="section-card searchable-content">
+                    <div class="card-header">
+                        <span class="section-num">Section 380, 381 & 383: Street Sales & Slaughter Control</span>
+                        <span class="memory-tag">380/381/383 = Meat & Street Food Supervision</span>
+                    </div>
+                    <p><strong>Sec. 380 (No Open Slaughter):</strong> Strictly bans the slaughter of cattle, sheep, goats, or pigs for human consumption at any place outside a registered municipal or licensed private slaughterhouse.</p>
+                    <p style="margin-top:0.5rem;"><strong>Sec. 381 (Sugarcane & Cut Fruit Rule):</strong> Regulates street vendors selling items like fresh juices, aerated water, mobile ice-golas, kulfi, or cut/peeled fruits outside authorized municipal markets.</p>
+                    <p style="margin-top:0.5rem;"><strong>Sec. 383 (Confiscating Unlicensed Carts):</strong> Authorizes the immediate seizure and confiscation of mobile vendor carts operating unhygienically or without structural alignment to licensing permissions.</p>
+                </div>
+
+                <div class="section-card searchable-content">
+                    <div class="card-header">
+                        <span class="section-num">Section 472 & 481: Continuing Fines & Court Prosecutions</span>
+                        <span class="memory-tag">472/481 = Courtroom Enforcement</span>
+                    </div>
+                    <p><strong>Sec. 472 (Daily Recurring Fine):</strong> Imposes escalating daily compounding fines on an establishment that continues to operate in an unhygienic manner after receiving an official health notice.</p>
+                    <p style="margin-top:0.5rem;"><strong>Sec. 481 (Launch Court Prosecutions):</strong> Empowers the Municipal Commissioner to launch, manage, or withdraw civil and criminal prosecutions against any individual violating licensing terms, sanitation rules, or public health guidelines.</p>
+                </div>
+            </section>
+
+            <section id="reference-sheet">
+                <h2 class="zone-title">Comprehensive High-Yield Exam Reference Sheet</h2>
+                <div class="table-container">
+                    <table id="referenceTable">
+                        <thead>
+                            <tr>
+                                <th>Section</th>
+                                <th>Exact GPMC Legal Focus</th>
+                                <th>High-Yield Exam Keyword</th>
+                                <th>Practical FSO Connection</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 4</strong></td>
+                                <td>Authorities Charged with Execution</td>
+                                <td>4 Pillars / Execution Bodies</td>
+                                <td>The Mayor is explicitly not an execution body under this section.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 5</strong></td>
+                                <td>Constitution of Corporation</td>
+                                <td>Body Corporate</td>
+                                <td>Gives the municipal machinery its corporate identity.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 7</strong></td>
+                                <td>Resignation of Councillors</td>
+                                <td>Written to Mayor</td>
+                                <td>Governs how representatives step down.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 10</strong></td>
+                                <td>Disqualification Criteria</td>
+                                <td>Office of Profit / Direct Interest</td>
+                                <td>Lists criteria that bar individuals from holding a corporate seat.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 19</strong></td>
+                                <td>Mayor and Deputy Mayor</td>
+                                <td>Presiding / Constitutional Head</td>
+                                <td>Political lead; has no direct executive execution powers.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 20</strong></td>
+                                <td>Standing Committee Constitution</td>
+                                <td>Financial Oversight / Money Box</td>
+                                <td>Scrutinizes city budgets and approves major corporate expenditures.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 35</strong></td>
+                                <td>Validity of Proceedings</td>
+                                <td>Shield of Legitimacy</td>
+                                <td>Protects corporate actions from technical invalidity lawsuits.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 36</strong></td>
+                                <td>Appointment of Commissioner</td>
+                                <td>Executive Head (CEO)</td>
+                                <td>Appointed by the State Government; runs all city operations.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 45/46</strong></td>
+                                <td>Appointment & Powers of Officers</td>
+                                <td>Medical Officer of Health (MOH)</td>
+                                <td>Establishes technical staff, positioning the MOH as health director.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 61</strong></td>
+                                <td>Essential service employee locks</td>
+                                <td>No Resignation Allowed</td>
+                                <td>Prevents emergency health staff from abandoning critical duties.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 62</strong></td>
+                                <td>Emergency declaration power</td>
+                                <td>State Intervention Button</td>
+                                <td>Allows the State to take control during major city disruptions.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 63</strong></td>
+                                <td>Obligatory Duties of Corporation</td>
+                                <td>Mandatory Checklist</td>
+                                <td>Non-negotiable tasks (Water supply, solid waste processing).</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 67</strong></td>
+                                <td>Functions of municipal authorities</td>
+                                <td>Executive Power Vests</td>
+                                <td>Confirms that daily execution power rests with the Commissioner.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 68</strong></td>
+                                <td>Commissioner powers under other laws</td>
+                                <td>External Acts Link</td>
+                                <td>Allows use of city machinery to enforce outside national health acts.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 76</strong></td>
+                                <td>Acquisition of property</td>
+                                <td>Corporate Ownership</td>
+                                <td>Grants power to acquire assets like testing labs or public markets.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 82</strong></td>
+                                <td>Constitution of Municipal Fund</td>
+                                <td>Central Treasury Account</td>
+                                <td>The core account where all city revenues must be deposited.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 83</strong></td>
+                                <td>Receipt of corporate payments</td>
+                                <td>Commissioner Lodges</td>
+                                <td>Places responsibility for handling income on the Commissioner.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 88</strong></td>
+                                <td>Application of Municipal Fund</td>
+                                <td>Lawful Spending Bounds</td>
+                                <td>Restricts fund use strictly to purposes authorized by the Act.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 90</strong></td>
+                                <td>Temporary emergency payments</td>
+                                <td>Urgent Works Flow</td>
+                                <td>Bypasses budget rules to fund urgent emergency health responses.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 93</strong></td>
+                                <td>Form of municipal accounts</td>
+                                <td>Standing Committee Ledger</td>
+                                <td>Mandates accounting formats set by the Standing Committee.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 127</strong></td>
+                                <td>Taxes to be imposed</td>
+                                <td>Property & Water Tax</td>
+                                <td>The revenue base used to fund municipal sanitary works.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 134</strong></td>
+                                <td>Charging for water supply variations</td>
+                                <td>Measurement / 5-Yr Compound</td>
+                                <td>Replaces property water tax with volume billing for factories.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 153</strong></td>
+                                <td>Construction of municipal drains</td>
+                                <td>Itemized Sewage Networks</td>
+                                <td>Gives the Commissioner power to maintain city drainage lines.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 189</strong></td>
+                                <td>Provision of water supply</td>
+                                <td>Potable Water Protection</td>
+                                <td>Mandates the delivery and protection of pure drinking water.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 194</strong></td>
+                                <td>Vesting of water works</td>
+                                <td>Source Water Ownership</td>
+                                <td>Places responsibility for the quality of municipal source water on AMC.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 199</strong></td>
+                                <td>Carrying water pipes through land</td>
+                                <td>Pipeline Infrastructure Push</td>
+                                <td>Prevents private landowners from blocking clean water lines.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 202</strong></td>
+                                <td>Vesting of Public Streets</td>
+                                <td>Public Highway Ownership</td>
+                                <td>Roads, sidewalks, and pavements vest in the Corporation.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 253</strong></td>
+                                <td>Building Construction Notices</td>
+                                <td>Prior Plan Permission</td>
+                                <td>Bars unauthorized construction without approved blueprints.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 264</strong></td>
+                                <td>Unsafe/Dangerous Buildings</td>
+                                <td>Repair or Demolish</td>
+                                <td>Right to repair, vacate, or demolish hazardous structures.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 290</strong></td>
+                                <td>Cleansing of streets and refuse</td>
+                                <td>The Clean Street Sweep</td>
+                                <td>Mandates systematic street sweeping and trash collection.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 291</strong></td>
+                                <td>Refuse to belong to Corporation</td>
+                                <td>Waste Ownership Law</td>
+                                <td>Collected refuse legally belongs to AMC for processing.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 315</strong></td>
+                                <td>Emergency outbreak containment</td>
+                                <td>Unannounced Entry</td>
+                                <td>Authorizes unannounced entries to disinfect or isolate vectors.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 318</strong></td>
+                                <td>Closure of infected eating houses</td>
+                                <td>Shut Food Outlets</td>
+                                <td>Empowers health officers to shut down food spots spreading disease.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 327</strong></td>
+                                <td>Public vs. private markets</td>
+                                <td>Municipal Fund Split</td>
+                                <td>Defines spaces built with city funds as municipal markets.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 337</strong></td>
+                                <td>Sale of unwholesome food banned</td>
+                                <td>Banning Decayed Food</td>
+                                <td>Baseline clause used to clear contaminated food from public markets.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 338</strong></td>
+                                <td>Inspection of food and tools</td>
+                                <td>Utensil Seizure Clause</td>
+                                <td>Authorizes the search and seizure of food, animals, and utensils.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 340</strong></td>
+                                <td>Veterinary inspection before slaughter</td>
+                                <td>Ante-Mortem Screening</td>
+                                <td>Prevents sick animals from entering the commercial meat supply.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 372</strong></td>
+                                <td>Mitigation of public nuisance</td>
+                                <td>Clear Garbage/Filth Hazards</td>
+                                <td>Remedial action against garbage piles and stagnant water.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 376</strong></td>
+                                <td>Mandatory trade licensing</td>
+                                <td>Gatekeeper License</td>
+                                <td>Bars commercial kitchens from operating without a health license.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 376A</strong></td>
+                                <td>Power to stop unlicensed use</td>
+                                <td>Instant Closure / Police Force</td>
+                                <td>Allows for the immediate shutdown of dangerous or unlicensed trades.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 380</strong></td>
+                                <td>Slaughterhouse Control</td>
+                                <td>No Open Slaughter</td>
+                                <td>Banning animal slaughter outside authorized spaces.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 381</strong></td>
+                                <td>Off-market street sales</td>
+                                <td>Sugarcane & Cut Fruit Rule</td>
+                                <td>Regulates street vendors selling items like fresh juices or open treats.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 383</strong></td>
+                                <td>Seizure of unauthorized street goods</td>
+                                <td>Confiscating Unlicensed Carts</td>
+                                <td>Authorizes immediate seizure of unhygienic mobile vendor carts.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 455</strong></td>
+                                <td>Validation of Rules</td>
+                                <td>State Sanction Stamp</td>
+                                <td>Requires previous publication & State Government sanction for rules.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 472</strong></td>
+                                <td>Continuing offences and daily penalties</td>
+                                <td>Daily Recurring Fine</td>
+                                <td>Imposes escalating fines for failing to clean a facility after notice.</td>
+                            </tr>
+                            <tr class="searchable-tr">
+                                <td><strong>Sec. 481</strong></td>
+                                <td>Institute legal proceedings</td>
+                                <td>Launch Court Prosecutions</td>
+                                <td>Gives authority to file criminal or civil lawsuits against violators.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="noResults" class="no-results">No matching criteria found. Try searching for section numbers or terms like "seizure", "338", "water".</div>
+            </section>
+
+            <section id="exam-tips" class="searchable-content">
+                <h2 class="zone-title" style="color: var(--accent-color); border-bottom-color: var(--accent-color);">🎯 Top Exam Tips for the Food Safety Officer (FSO) Exam</h2>
+                <div class="section-card" style="border-top-color: var(--accent-color); background-color: #ffffff;">
+                    <ul style="list-style: none; display: grid; gap: 1rem;">
+                        <li style="border-left: 4px solid var(--primary-color); padding-left: 1rem;">
+                            <strong>1. The Vessels & Pots Trap:</strong> If an exam question specifically highlights the authority to inspect vessels, pots, or manufacturing instruments used to prepare food, point directly to <strong>Section 338</strong>, not standard licensing rules.
+                        </li>
+                        <li style="border-left: 4px solid var(--primary-color); padding-left: 1rem;">
+                            <strong>2. The Street Food Composition:</strong> If a question describes an unlicensed cart hawking mobile operational items like ice-golas, aerated water, kulfi, sugarcane juice, or cut/peeled fruits, select <strong>Section 381</strong>.
+                        </li>
+                        <li style="border-left: 4px solid var(--primary-color); padding-left: 1rem;">
+                            <strong>3. The Daily Penalty Compounding Logic:</strong> If a food facility fails to clean its dirty building infrastructure after receiving a notice under Section 297, remember that <strong>Section 472</strong> allows for an escalating daily compounding fine on top of the initial ticket penalty under Section 471.
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer style="background-color: #0f172a; color: white; text-align: center; padding: 1.5rem; margin-top: 4rem; font-size: 0.9rem;">
+        AMC Food Safety Officer (FSO) Exam Revision System &bull; GPMC Act, 1949 Layout
+    </footer>
+
+    <script>
+        // Responsive Mobile Menu Code
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when link is tapped on mobile views
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Real-time Page Filtering System & Search Logic
+        const searchInput = document.getElementById('searchInput');
+        const sections = document.querySelectorAll('.searchable-content');
+        const cards = document.querySelectorAll('.section-card');
+        const flowBadges = document.querySelectorAll('.flow-badge');
+        const timelinePhases = document.querySelectorAll('.timeline-phase');
+        const tableRows = document.querySelectorAll('.searchable-tr');
+        const noResults = document.getElementById('noResults');
+
+        searchInput.addEventListener('input', function(e) {
+            const query = e.target.value.toLowerCase().trim();
+            let matchesFound = false;
+
+            // Handle filtering inside the Visual Timeline Flow block
+            let visualTimelineHasMatches = false;
+            timelinePhases.forEach(phase => {
+                let phaseHasMatches = false;
+                const badges = phase.querySelectorAll('.flow-badge');
+                
+                badges.forEach(badge => {
+                    const text = badge.textContent.toLowerCase();
+                    if (text.includes(query)) {
+                        badge.style.display = 'inline-flex';
+                        phaseHasMatches = true;
+                        visualTimelineHasMatches = true;
+                    } else {
+                        badge.style.display = 'none';
+                    }
+                });
+                
+                // Hide the whole phase container if none of its steps match
+                if (phaseHasMatches || query === '') {
+                    phase.style.display = 'block';
+                } else {
+                    phase.style.display = 'none';
+                }
+            });
+
+            const timelineCard = document.querySelector('.timeline-card');
+            if (visualTimelineHasMatches || query === '') {
+                if(timelineCard) timelineCard.style.display = 'block';
+                if(query !== '') matchesFound = true;
+            } else {
+                if(timelineCard) timelineCard.style.display = 'none';
+            }
+
+            // Handle standard card components filtering
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                if (text.includes(query)) {
+                    card.style.display = 'block';
+                    matchesFound = true;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Handle data table rows filtering
+            tableRows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                if (text.includes(query)) {
+                    row.style.display = '';
+                    matchesFound = true;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+
+            // Toggle empty screen message block
+            if (!matchesFound && query !== '') {
+                noResults.style.display = 'block';
+            } else {
+                noResults.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
